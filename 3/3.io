@@ -1,19 +1,6 @@
 file := File clone openForReading("3.txt")
 input := file readLines
 
-Sequence binaryAsDecimal := method(
-    reversed := self reverse
-    result := 0
-
-    for(i, 0, reversed size - 1,
-        numAt := reversed charAt(i) asNumber
-
-        result = result + (numAt * (2 ** i))
-    )
-
-    result
-)
-
 Sequence charAt := method(i,
     exSlice(i, i + 1)
 )
@@ -50,8 +37,8 @@ occuranceList = numericList reduce(acc, lst,
 
 gamma := occuranceList map(value,
     if(value zero > value one, "0", "1")
-) join binaryAsDecimal
+) join fromBase(2)
 epsilon := occuranceList map(value,
     if(value zero < value one, "0", "1")
-) join binaryAsDecimal
+) join fromBase(2)
 (gamma * epsilon) println
